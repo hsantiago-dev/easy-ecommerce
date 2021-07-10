@@ -1,5 +1,7 @@
+import 'package:easy/pages/carrinho_page.dart';
 import 'package:easy/pages/home_page.dart';
 import 'package:easy/pages/login_page.dart';
+import 'package:easy/pages/pedidos_page.dart';
 import 'package:easy/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "/login": (context) => LoginPage(),
         "/home": (context) => HomePage(),
+        "/carrinho": (context) => CarrinhoPage(),
+        "/pedidos": (context) => PedidosPage(),
       },
     );
   }

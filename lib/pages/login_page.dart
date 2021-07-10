@@ -1,4 +1,4 @@
-import 'package:easy/shared/login_google_button/login_google_button.dart';
+import 'package:easy/widgets/login_google_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
