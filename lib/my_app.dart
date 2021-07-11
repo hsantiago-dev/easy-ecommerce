@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Easy!',
       debugShowCheckedModeBanner: false,
       home: SplashPage(),
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+      ),
       routes: {
         "/login": (context) => LoginPage(),
         "/home": (context) => HomePage(),
