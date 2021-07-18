@@ -1,4 +1,5 @@
 import 'package:easy/pages/carrinho_page.dart';
+import 'package:easy/pages/cartao/cartao_page.dart';
 import 'package:easy/pages/home_page.dart';
 import 'package:easy/pages/login_page.dart';
 import 'package:easy/pages/pedidos_page.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         "/home": (context) => HomePage(),
         "/carrinho": (context) => CarrinhoPage(),
         "/pedidos": (context) => PedidosPage(),
+        "/cartao": (context) => CartaoPage(),
       },
     );
   }

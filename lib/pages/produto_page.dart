@@ -1,8 +1,10 @@
 import 'package:easy/models/produto.dart';
+import 'package:easy/repositories/carrinho_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class ProdutoPage extends StatelessWidget {
+class ProdutoPage extends StatefulWidget {
   final Produto produto;
   const ProdutoPage({
     Key? key,
@@ -10,7 +12,16 @@ class ProdutoPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ProdutoPage> createState() => _ProdutoPageState();
+}
+
+class _ProdutoPageState extends State<ProdutoPage> {
+  late CarrinhoRepository carrinho;
+
+  @override
   Widget build(BuildContext context) {
+    carrinho = Provider.of<CarrinhoRepository>(context);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -45,7 +56,7 @@ class ProdutoPage extends StatelessWidget {
                     color: Colors.white,
                   ),
                   child: Image.asset(
-                    produto.foto,
+                    widget.produto.foto,
                     width: 400,
                     height: 270,
                   ),
@@ -54,7 +65,7 @@ class ProdutoPage extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                   child: Text(
-                    produto.nome,
+                    widget.produto.nome,
                     style: GoogleFonts.lexendDeca(
                         fontSize: 24, color: Colors.black87),
                   ),
@@ -62,7 +73,7 @@ class ProdutoPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    'Descrição: ${produto.descricao}',
+                    'Descrição: ${widget.produto.descricao}',
                     style:
                         GoogleFonts.inter(fontSize: 18, color: Colors.black87),
                   ),
@@ -74,7 +85,7 @@ class ProdutoPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    'R\$: ${produto.valor}',
+                    'R\$ ${widget.produto.valor}',
                     style: GoogleFonts.lexendDeca(
                         fontSize: 34, color: Color(0xFF28D890)),
                   ),
@@ -93,23 +104,24 @@ class ProdutoPage extends StatelessWidget {
                       primary: Colors.transparent,
                       shadowColor: Colors.transparent,
                     ),
-                    onPressed: () {},
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.arrow_forward,
+                    onPressed: () {
+                      carrinho.add(widget.produto);
+                      Navigator.pushReplacementNamed(context, '/carrinho');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.arrow_forward,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            'COMPRAR',
+                            style: GoogleFonts.inter(fontSize: 16),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              'COMPRAR',
-                              style: GoogleFonts.inter(fontSize: 16),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -127,23 +139,23 @@ class ProdutoPage extends StatelessWidget {
                       primary: Colors.transparent,
                       shadowColor: Colors.transparent,
                     ),
-                    onPressed: () {},
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.shopping_cart,
+                    onPressed: () {
+                      carrinho.add(widget.produto);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.shopping_cart,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            'ADICIONAR AO CARRINHO',
+                            style: GoogleFonts.inter(fontSize: 16),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              'ADICIONAR AO CARRINHO',
-                              style: GoogleFonts.inter(fontSize: 16),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

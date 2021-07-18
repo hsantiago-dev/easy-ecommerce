@@ -3,6 +3,7 @@ class Produto {
   String nome;
   double valor;
   String? descricao;
+  int? quantidade;
 
   Produto({
     required this.foto,
