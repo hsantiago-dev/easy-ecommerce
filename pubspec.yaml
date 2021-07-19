@@ -15,6 +15,7 @@ dependencies:
   flutter_masked_text2: ^0.9.1
   intl: 
   provider: ^5.0.0
+  modal_bottom_sheet: ^2.0.0
 
 dev_dependencies:
   flutter_test:

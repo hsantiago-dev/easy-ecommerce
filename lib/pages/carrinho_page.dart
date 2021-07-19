@@ -1,4 +1,3 @@
-import 'package:easy/models/produto.dart';
 import 'package:easy/repositories/carrinho_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

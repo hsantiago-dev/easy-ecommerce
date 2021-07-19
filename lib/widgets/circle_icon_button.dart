@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CircleIconButton extends StatelessWidget {
   final VoidCallback onTap;
   final IconData icon;
+  final bool selecionado;
   const CircleIconButton({
     Key? key,
     required this.onTap,
     required this.icon,
+    this.selecionado = false,
   }) : super(key: key);
 
   @override
@@ -16,11 +18,14 @@ class CircleIconButton extends StatelessWidget {
       child: Container(
         width: 65,
         height: 65,
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF0EC4B7), Color(0xFF28D890)],
-          ),
+          gradient: (selecionado)
+              ? null
+              : const LinearGradient(
+                  colors: [Color(0xFF0EC4B7), Color(0xFF28D890)],
+                ),
+          color: (selecionado) ? Colors.grey : null,
           shape: BoxShape.circle,
           border: Border.all(color: Colors.white),
         ),
