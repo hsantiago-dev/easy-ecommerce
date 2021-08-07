@@ -4,6 +4,7 @@ import 'package:easy/pages/home_page.dart';
 import 'package:easy/pages/login_page.dart';
 import 'package:easy/pages/pedidos_page.dart';
 import 'package:easy/pages/splash_page.dart';
+import 'package:easy/widgets/auth_check.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         "/carrinho": (context) => CarrinhoPage(),
         "/pedidos": (context) => PedidosPage(),
         "/cartao": (context) => CartaoPage(),
+        "/auth_check": (context) => AuthCheck(),
       },
     );
   }

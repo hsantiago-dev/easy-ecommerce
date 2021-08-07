@@ -1,9 +1,17 @@
-import 'package:easy/widgets/login_google_button.dart';
+import 'package:easy/services/auth_service.dart';
+import 'package:easy/widgets/login_social_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final controller = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +27,7 @@ class LoginPage extends StatelessWidget {
             Container(
               width: size.width,
               height: size.height * 0.50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFF28D890), Color(0xFFFFFFFF)],
                   begin: Alignment.topCenter,
@@ -49,26 +57,41 @@ class LoginPage extends StatelessWidget {
                     'Easy!',
                     style: GoogleFonts.lexendDeca(
                       fontSize: 32,
-                      color: Color(0xFF555864),
+                      color: const Color(0xFF555864),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 24),
+                    padding: const EdgeInsets.only(top: 24),
                     child: Text(
-                      'Venda fácil!\n Encontre fácil!',
+                      'Encontre fácil!',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lexendDeca(
                         fontSize: 25,
-                        color: Color(0xFF878787),
+                        color: const Color(0xFF878787),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 60, left: 40, right: 40),
-                    child: LoginGoogleButton(
+                    padding:
+                        const EdgeInsets.only(top: 42, left: 40, right: 40),
+                    child: LoginSocialButton(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, '/home');
+                        controller.googleSignIn();
                       },
+                      textoBotao: 'Entrar com Google',
+                      logo: 'assets/images/google.png',
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 40, right: 40),
+                    child: LoginSocialButton(
+                      onTap: () {
+                        controller.facebookSignIn();
+                      },
+                      textoBotao: 'Entrar com Facebook',
+                      logo: 'assets/images/facebook.png',
+                      corFundo: 0xFF45619d,
                     ),
                   )
                 ],

@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginGoogleButton extends StatelessWidget {
+class LoginSocialButton extends StatelessWidget {
   final VoidCallback onTap;
-  const LoginGoogleButton({Key? key, required this.onTap}) : super(key: key);
+  final String logo;
+  final String textoBotao;
+  final int? corFundo;
+
+  const LoginSocialButton({
+    Key? key,
+    required this.onTap,
+    required this.logo,
+    required this.textoBotao,
+    this.corFundo,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +22,9 @@ class LoginGoogleButton extends StatelessWidget {
       child: Container(
         height: 56,
         decoration: BoxDecoration(
-          color: Color(0xFFFAFAFC),
+          color: Color((corFundo == null) ? 0xFFFAFAFC : corFundo!),
           borderRadius: BorderRadius.circular(5),
-          border: Border.fromBorderSide(
+          border: const Border.fromBorderSide(
             BorderSide(color: Color(0xFFE3E3E6)),
           ),
         ),
@@ -25,14 +35,14 @@ class LoginGoogleButton extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/google.png'),
-                  SizedBox(
+                  Image.asset(logo),
+                  const SizedBox(
                     width: 16,
                   ),
                   Container(
                     height: 56,
                     width: 1,
-                    color: Color(0xFFE3E3E6),
+                    color: const Color(0xFFE3E3E6),
                   )
                 ],
               ),
@@ -42,12 +52,15 @@ class LoginGoogleButton extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Entrar com Google',
-                      style: GoogleFonts.inter(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF585666),
-                      )),
+                  Text(
+                    textoBotao,
+                    style: GoogleFonts.inter(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color:
+                          Color((corFundo == null) ? 0xFF585666 : 0xFFFFFFFF),
+                    ),
+                  ),
                 ],
               ),
             ),

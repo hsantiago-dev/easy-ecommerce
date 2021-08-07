@@ -7,9 +7,9 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> irParaProximaPage() async {
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 3));
 
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, '/auth_check');
     }
 
     irParaProximaPage();
@@ -20,7 +20,7 @@ class SplashPage extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xFF28D890), Color(0xFF0EC4B7)],
               ),

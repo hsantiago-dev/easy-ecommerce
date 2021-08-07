@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                       width: 55,
                     ),
                     title: Text(
-                      'Bem vindo!\nA loja do Zé',
+                      'Bem vindo!',
                       style: GoogleFonts.lexendDeca(
                         color: Colors.white,
                         fontSize: 25,
