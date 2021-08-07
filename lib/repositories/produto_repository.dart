@@ -1,36 +1,44 @@
+import 'dart:collection';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy/db/db_firestore.dart';
 import 'package:easy/models/produto.dart';
+import 'package:flutter/cupertino.dart';
 
-class ProdutoRepository {
-  static List<Produto> produtos = [
-    Produto(
-      foto: 'assets/images/notebookAcer.jpg',
-      valor: 2499.99,
-      nome: 'Notebook Acer',
-      descricao: 'Notebook bom pra caramba.',
-    ),
-    Produto(
-      foto: 'assets/images/galaxyS10.jpg',
-      valor: 3599.99,
-      nome: 'Samsung Galaxy S10',
-      descricao: 'Celular bom pra caramba.',
-    ),
-    Produto(
-      foto: 'assets/images/alexa.jpg',
-      valor: 599.99,
-      nome: 'Echo Dot Alexa',
-      descricao: 'Alexa boa pra caramba.',
-    ),
-    Produto(
-      foto: 'assets/images/roteador.jpg',
-      valor: 99.99,
-      nome: 'Roteador Wireless Multilaser',
-      descricao: 'Roteador bom pra caramba.',
-    ),
-    Produto(
-      foto: 'assets/images/headsetGato.jpg',
-      valor: 349.99,
-      nome: 'Headset Gamer Orelha de Gato',
-      descricao: 'Headset bom e bonito pra caramba.',
-    ),
-  ];
+class ProdutoRepository extends ChangeNotifier {
+  List<Produto> _lista = [];
+  late FirebaseFirestore db;
+
+  UnmodifiableListView<Produto> get lista => UnmodifiableListView(_lista);
+
+  ProdutoRepository() {
+    _startRepository();
+  }
+
+  _startRepository() async {
+    await _startFirestore();
+    await _readProdutos();
+  }
+
+  _startFirestore() {
+    db = DBFirestore.get();
+  }
+
+  _readProdutos() async {
+    if (_lista.isEmpty) {
+      await db.collection('produtos').get().then((querySnapshot) => {
+            querySnapshot.docs.forEach((doc) {
+              _lista.add(
+                Produto(
+                  foto: doc.data()['foto'],
+                  nome: doc.data()['nome'],
+                  valor: double.parse(doc.data()['valor'].toString()),
+                  descricao: doc.data()['descricao'],
+                ),
+              );
+            })
+          });
+
+      notifyListeners();
+    }
+  }
 }

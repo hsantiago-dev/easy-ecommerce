@@ -3,14 +3,18 @@ import 'package:easy/repositories/produto_repository.dart';
 import 'package:easy/widgets/circle_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final produtos = ProdutoRepository.produtos;
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
     final double itemHeight = (size.height / 1.9) / 1.5;
@@ -139,65 +143,70 @@ class HomePage extends StatelessWidget {
               height: 4,
             ),
             Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: (itemWidth / itemHeight),
-                children: List.generate(produtos.length, (index) {
-                  return InkWell(
-                    onTap: () => mostrarProduto(produtos[index]),
-                    child: Card(
-                      elevation: 3,
-                      semanticContainer: true,
-                      margin: const EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(5),
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 8, horizontal: 5),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.grey.withOpacity(0.3)),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Image.asset(
-                              produtos[index].foto,
-                              height: 100,
-                              width: 150,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              produtos[index].nome,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.lexendDeca(
-                                fontSize: 18,
+              child: Consumer<ProdutoRepository>(
+                builder: (context, produtos, child) {
+                  return GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: (itemWidth / itemHeight),
+                    children: List.generate(produtos.lista.length, (index) {
+                      return InkWell(
+                        onTap: () => mostrarProduto(produtos.lista[index]),
+                        child: Card(
+                          elevation: 3,
+                          semanticContainer: true,
+                          margin: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(5),
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 8, horizontal: 5),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.grey.withOpacity(0.3)),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Image.asset(
+                                  produtos.lista[index].foto,
+                                  height: 100,
+                                  width: 150,
+                                ),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 8,
-                            ),
-                            child: Text(
-                              'R\$ ${produtos[index].valor}',
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  produtos.lista[index].nome,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.lexendDeca(
+                                    fontSize: 18,
+                                  ),
+                                ),
                               ),
-                            ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 8,
+                                ),
+                                child: Text(
+                                  'R\$ ${produtos.lista[index].valor}',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      );
+                    }),
                   );
-                }),
+                },
               ),
             ),
           ],

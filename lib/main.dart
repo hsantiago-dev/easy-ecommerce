@@ -1,4 +1,5 @@
 import 'package:easy/repositories/carrinho_repository.dart';
+import 'package:easy/repositories/produto_repository.dart';
 import 'package:easy/services/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => AuthService(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProdutoRepository(),
         ),
       ],
       child: MyApp(),
