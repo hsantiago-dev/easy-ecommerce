@@ -11,6 +11,8 @@
   
   - Com a chave SHA 1 em mãos é só acessar o console do projeto Firebase e cadastrar a nova chave em 'Configurações do projeto'. 
 
+  - Em configurações do projeto também deve-se baixar o arquivo google-services.json e adiciona-lo dentro da pasta android/app/
+
 ## Particuladores do projeto
 
   - A tela de pedidos ainda está com dados estáticos no código e sem funcionalidades, parte das funcionalidades já estão prontas porém ao juntarmos as alterações do projeto gerou muitos erros.  
