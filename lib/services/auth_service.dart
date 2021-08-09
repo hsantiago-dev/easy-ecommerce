@@ -9,7 +9,6 @@ class AuthService extends ChangeNotifier {
   bool isLoading = true;
 
   AuthService() {
-    logout();
     _authCheck();
   }
 
@@ -30,8 +29,6 @@ class AuthService extends ChangeNotifier {
   facebookSignIn() async {
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
-    print('----------------------------------------------------');
-    print(loginResult);
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(loginResult.accessToken!.token);
 

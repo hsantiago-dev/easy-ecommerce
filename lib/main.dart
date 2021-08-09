@@ -1,3 +1,4 @@
+import 'package:easy/pages/usuario/usuario_controller.dart';
 import 'package:easy/repositories/carrinho_repository.dart';
 import 'package:easy/repositories/produto_repository.dart';
 import 'package:easy/services/auth_service.dart';
@@ -22,6 +23,11 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => ProdutoRepository(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => UsuarioController(
+            auth: context.read<AuthService>(),
+          ),
         ),
       ],
       child: MyApp(),

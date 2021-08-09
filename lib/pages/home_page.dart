@@ -1,12 +1,14 @@
 import 'package:easy/pages/produto_page.dart';
 import 'package:easy/repositories/produto_repository.dart';
+import 'package:easy/services/auth_service.dart';
 import 'package:easy/widgets/circle_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final AuthService auth;
+  const HomePage({Key? key, required this.auth}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -28,6 +30,10 @@ class _HomePageState extends State<HomePage> {
       Navigator.pushNamed(context, '/pedidos');
     }
 
+    irParaPerfilUsuario() {
+      Navigator.pushNamed(context, '/usuario');
+    }
+
     mostrarProduto(produto) {
       Navigator.push(
         context,
@@ -40,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(152),
+          preferredSize: const Size.fromHeight(152),
           child: Container(
             height: 152,
             decoration: const BoxDecoration(
@@ -65,12 +71,18 @@ class _HomePageState extends State<HomePage> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    trailing: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: Colors.black45,
-                        borderRadius: BorderRadius.circular(5),
+                    trailing: InkWell(
+                      onTap: irParaPerfilUsuario,
+                      child: Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: Colors.black45,
+                          borderRadius: BorderRadius.circular(5),
+                          image: DecorationImage(
+                            image: NetworkImage(widget.auth.usuario!.photoURL!),
+                          ),
+                        ),
                       ),
                     ),
                   ),

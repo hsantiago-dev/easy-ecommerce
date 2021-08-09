@@ -62,7 +62,7 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                               Border.all(color: Colors.grey.withOpacity(0.3)),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.place,
                           size: 30,
                           color: Color(0xFF28D890),
@@ -76,13 +76,13 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                           color: Colors.black87,
                         ),
                       ),
-                      subtitle: Text('3131, Jardim Carvalho.'),
-                      trailing: Icon(
+                      subtitle: const Text('3131, Jardim Carvalho.'),
+                      trailing: const Icon(
                         Icons.navigate_next,
                         size: 30,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

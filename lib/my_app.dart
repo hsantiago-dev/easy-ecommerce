@@ -4,8 +4,11 @@ import 'package:easy/pages/home_page.dart';
 import 'package:easy/pages/login_page.dart';
 import 'package:easy/pages/pedidos_page.dart';
 import 'package:easy/pages/splash_page.dart';
+import 'package:easy/pages/usuario/usuario_page.dart';
+import 'package:easy/services/auth_service.dart';
 import 'package:easy/widgets/auth_check.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -20,12 +23,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
       ),
       routes: {
-        "/login": (context) => LoginPage(),
-        "/home": (context) => HomePage(),
+        "/login": (context) => const LoginPage(),
+        "/home": (context) => HomePage(
+              auth: context.read<AuthService>(),
+            ),
         "/carrinho": (context) => CarrinhoPage(),
-        "/pedidos": (context) => PedidosPage(),
-        "/cartao": (context) => CartaoPage(),
-        "/auth_check": (context) => AuthCheck(),
+        "/pedidos": (context) => const PedidosPage(),
+        "/cartao": (context) => const CartaoPage(),
+        "/auth_check": (context) => const AuthCheck(),
+        "/usuario": (context) => const UsuarioPage(),
       },
     );
   }

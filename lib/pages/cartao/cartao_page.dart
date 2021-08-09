@@ -81,8 +81,8 @@ class _CartaoPageState extends State<CartaoPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: const Color(0xFF353538),
-                    boxShadow: [
-                      const BoxShadow(
+                    boxShadow: const [
+                      BoxShadow(
                         color: Colors.grey,
                         offset: Offset(0.0, 1.0), //(x,y)
                         blurRadius: 6.0,
@@ -291,7 +291,7 @@ class _CartaoPageState extends State<CartaoPage> {
                       if (controller.formKey.currentState!.validate()) {
                         carrinho.limparCarrinho();
 
-                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(context, '/home');
 
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
