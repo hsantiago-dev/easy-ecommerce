@@ -7,7 +7,7 @@
 
   - Rodar o comando "flutter pub get" para assim instalar as dependências necessárias para o projeto.
   
-  - Após isso, verificar se o arquivo android/gradlew já está criado. Caso não, basta rodar o projeto uma vez (Mesmo gerando erro, ele irá gerar o arquivo) e então rode os comandos no terminal para pegar a SHA1 key. 'cd android' e depois './gradlew sigingReport' e copiar a chave SHA1. 
+  - Após isso, verificar se o arquivo android/gradlew já está criado. Caso não, basta rodar o projeto uma vez (Mesmo gerando erro, ele irá gerar o arquivo) e então rode os comandos no terminal para pegar a SHA1 key. 'cd android' e depois './gradlew signingReport' e copiar a chave SHA1. 
   
   - Com a chave SHA 1 em mãos é só acessar o console do projeto Firebase e cadastrar a nova chave em 'Configurações do projeto'. 
 
