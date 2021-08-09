@@ -1,15 +1,18 @@
 ## Integrantes
+
  Henrick Santiago  
  Samarone
 
 ## Instalação
 
-  Após baixar o projeto no Git, deve-se rodar o comando "flutter pub get" para assim instalar as dependências necessárias para o projeto.
+  Rodar o comando "flutter pub get" para assim instalar as dependências necessárias para o projeto.
+  
+  Após isso, verificar se o arquivo android/gradlew já está criado. Caso não, basta rodar o projeto uma vez (Mesmo gerando erro, ele irá gerar o arquivo).
+  E então rode os comandos no terminal para pegar a SHA1 key. 'cd android' e depois './gradlew sigingReport' e copiar a chave SHA1.
+  Com essa chave em mãos é só acessar o console do projeto Firebase e cadastrar a nova chave em 'Configurações do projeto'.
 
 ## Particuladores do projeto
-  Na tela de login tem apenas o botão para logar com o Google, que não necessita do login realmente e apenas redireciona para a página HOME.  
-  A tela de pedidos ainda está com dados estáticos no código e sem funcionalidades, mas isso será corrigido posteriormente.  
-  Validação de formulário acontece na tela de adicionar cartão, porém a validação consiste apenas em verificar se o campo está nulo ou não.  
-  Ainda não foi desenvolvido a funcionalidade de adicionar um produto na loja.  
-  Ainda falta o desenvolvimento do gerenciamento de dados do próprio usuário.  
-  Falta também o cadastro e escolha de endereços de entrega do usuário (Hoje estão todos fixos em tela).  
+
+  A tela de pedidos ainda está com dados estáticos no código e sem funcionalidades, parte das funcionalidades já estão prontas porém ao juntarmos as alterações do projeto gerou muitos erros.  
+  Falta o cadastro e escolha de endereços de entrega do usuário (Hoje estão todos fixos em tela), que serão implementados junto a próxima entrega pois utilizaremos HTTP requests para buscar o endereço a partir do CEP.  
+  Login do Facebook só funciona com o meu perfil (Henrick Santiago), provavelmente alguma permissão que não consegui encontrar no console do app no Facebook.
