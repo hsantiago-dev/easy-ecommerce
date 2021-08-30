@@ -52,36 +52,94 @@ class _CarrinhoPageState extends State<CarrinhoPage> {
                       ),
                     ),
                   ),
-                  Card(
-                    margin: const EdgeInsets.only(top: 10, left: 5, right: 5),
-                    child: ListTile(
-                      leading: Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Colors.grey.withOpacity(0.3)),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: const Icon(
-                          Icons.place,
-                          size: 30,
-                          color: Color(0xFF28D890),
-                        ),
-                      ),
-                      title: Text(
-                        'Avenida Ernani Batista Rosas',
-                        style: GoogleFonts.inter(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      subtitle: const Text('3131, Jardim Carvalho.'),
-                      trailing: const Icon(
-                        Icons.navigate_next,
-                        size: 30,
-                      ),
-                    ),
+                  Consumer<CarrinhoRepository>(
+                    builder: (context, carrinho, child) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/seleciona_endereco');
+                        },
+                        child: (carrinho.endereco_entrega != null)
+                            ? Card(
+                                margin: const EdgeInsets.only(
+                                    top: 10, left: 5, right: 5),
+                                child: ListTile(
+                                  leading: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.grey.withOpacity(0.3)),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: const Icon(
+                                      Icons.place,
+                                      size: 30,
+                                      color: Color(0xFF28D890),
+                                    ),
+                                  ),
+                                  title: Text(
+                                    carrinho.endereco_entrega!.logradouro,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                    ),
+                                  ),
+                                  subtitle: Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 4),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(carrinho.endereco_entrega!.numero),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 4),
+                                          child: Text(
+                                              '${carrinho.endereco_entrega!.cep}, ${carrinho.endereco_entrega!.bairro}, ${carrinho.endereco_entrega!.cidade}'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  trailing: const Icon(
+                                    Icons.navigate_next,
+                                    size: 30,
+                                  ),
+                                ),
+                              )
+                            : Card(
+                                margin: const EdgeInsets.only(
+                                    top: 10, left: 5, right: 5),
+                                child: ListTile(
+                                  leading: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.grey.withOpacity(0.3)),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: const Icon(
+                                      Icons.place,
+                                      size: 30,
+                                      color: Color(0xFF28D890),
+                                    ),
+                                  ),
+                                  title: Text(
+                                    'Endereço ainda não informado',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                    ),
+                                  ),
+                                  trailing: const Icon(
+                                    Icons.navigate_next,
+                                    size: 30,
+                                  ),
+                                ),
+                              ),
+                      );
+                    },
                   ),
                 ],
               ),

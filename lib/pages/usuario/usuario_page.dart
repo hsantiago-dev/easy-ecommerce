@@ -1,5 +1,6 @@
 import 'package:easy/pages/usuario/usuario_controller.dart';
 import 'package:easy/services/auth_service.dart';
+import 'package:easy/widgets/enderecos_entrega_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -239,61 +240,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                       const Divider(
                         height: 10,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Endereços para entrega',
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.lexendDeca(
-                                fontSize: 20,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.add,
-                                color: Color(0xFF28D890),
-                                size: 34,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: ListView.separated(
-                          itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                              margin: const EdgeInsets.only(
-                                  top: 10, left: 5, right: 5),
-                              child: ListTile(
-                                title: Text(
-                                  'Avenida Ernani Batista Rosas',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                                subtitle: const Text(
-                                    '3131, Jardim Carvalho, Ponta Grossa'),
-                                trailing: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.edit,
-                                    size: 25,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                          separatorBuilder: (_, ___) => const Divider(),
-                          itemCount: 1,
-                        ),
-                      ),
+                      EnderecosEntregaWidget(),
                     ],
                   ),
                 ),

@@ -1,13 +1,20 @@
 import 'dart:collection';
 
+import 'package:easy/models/endereco.dart';
 import 'package:easy/models/produto.dart';
 import 'package:flutter/material.dart';
 
 class CarrinhoRepository extends ChangeNotifier {
   List<Produto> _lista = [];
   double total = 0;
+  Endereco? endereco_entrega;
 
   UnmodifiableListView<Produto> get lista => UnmodifiableListView(_lista);
+
+  setEnderecoEntrega(Endereco endereco) {
+    endereco_entrega = endereco;
+    notifyListeners();
+  }
 
   add(Produto produto) {
     if (!_lista.contains(produto)) {

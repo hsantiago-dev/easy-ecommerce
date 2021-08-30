@@ -1,5 +1,6 @@
 import 'package:easy/pages/usuario/usuario_controller.dart';
 import 'package:easy/repositories/carrinho_repository.dart';
+import 'package:easy/repositories/endereco_entrega_repository.dart';
 import 'package:easy/repositories/produto_repository.dart';
 import 'package:easy/services/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,6 +27,11 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => UsuarioController(
+            auth: context.read<AuthService>(),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => EnderecoEntregaRepository(
             auth: context.read<AuthService>(),
           ),
         ),
